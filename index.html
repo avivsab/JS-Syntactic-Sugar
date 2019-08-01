@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        button {
+            padding: .25rem .5rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            border-radius: 0.1rem;
+            }
+    </style>
+    <script type="text/javascript" src="phonebook.js"></script>
+    <title>Phone Book</title>
+</head>
+<body>
+    <h1 class="display-4 text-center">
+        <i class="fas fa-book-open text-primary"></i>Phone <span class="text-primary"> Book</span></h1>
+<div class="container mt-4 shadow-lg" style="display: flex; flex-wrap:wrap; width: 90%;">
+    <div style="flex: 0.4; margin: 15px; border: 1px solid blue; padding: 10px; height: 55vh">
+    <form id="contact-form">
+        <h3 class="text-center">ADD NEW CONTACT</h3>
+        <div class="form-group">
+            <label for="name">First Name</label>
+            <input type="text" id="name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="phone">PHONE NUMBER</label>
+            <input type="number" id="phone" class="form-control">
+        </div>
+        <input type="submit" value="Add Contact" class="btn btn-primary btn-block mt-5 shadow" id="btn">
+    </form>
+    </div>
+    <div style="flex: 1">
+
+    <table class="table table-striped mt-3 shadow">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="contact-list"></tbody>
+    </table>
+   </div>
+</div>
+    <script src="app.js"></script>
+</body>
+</html>
