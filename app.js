@@ -1,5 +1,3 @@
-const phonebook = data;
-
 class Contact {
     constructor(name, address, phone) {
         this.name = name;
@@ -7,7 +5,7 @@ class Contact {
         this.phone = phone;
     }
 }
-
+const phonebook = data; // needed only for using the external data file
 // UI Class: Handle UI Tasks
 class UI {
     static displayContact() {
@@ -38,7 +36,6 @@ class UI {
 
     static addContactToList(contact) {
         const list = document.querySelector('#contact-list');
-        console.log(list.children.length)
         const row = document.createElement('tr');
         row.innerHTML = `
               <td>${contact.name}</td>
@@ -52,23 +49,21 @@ class UI {
 
     static updateContact(el) {
         if(el.classList.contains('update')) {
-            console.log('update');
-            console.log(el.parentElement.parentElement)
             let updateLine = el.parentElement.parentElement;
             let lineValues = updateLine.innerText;
             const wordsArr = lineValues.split(/\s+/);
-            console.log(wordsArr)
             const row = document.createElement('tr');
-              updateLine.innerHTML = `<tr>
-                        <td><input type="text" value="${wordsArr[0]} ${wordsArr[1]}" id="newName"></td>
-              <td><input type="text" value="${wordsArr[2]}" id="newAddress"></td>
-              <td><input type="text" value="${wordsArr[3]}" id="newPhone"></td>
-              <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
-              <td><a href="#" class="btn btn-info btn-sm updateFields">update</a></td>
+              updateLine.innerHTML = `
+                 <tr>
+                      <td><input type="text" value="${wordsArr[0]} ${wordsArr[1]}" id="newName"></td>
+                      <td><input type="text" value="${wordsArr[2]}" id="newAddress"></td>
+                      <td><input type="text" value="${wordsArr[3]}" id="newPhone"></td>
+                      <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
+                      <td><a href="#" class="btn btn-info btn-sm updateFields">update</a></td>
                 </tr>`;
-
             const updateValues = document.querySelector('.updateFields');
             updateValues.addEventListener('click', _=> UI.updateFiled(updateValues))
+            
             }
         }
 
@@ -78,13 +73,15 @@ class UI {
             const newAddress = document.querySelector('#newAddress');
             const newPhone = document.querySelector('#newPhone');
             updateLine.innerHTML = `
-              <td>${newName.value}</td>
-              <td>${newAddress.value}</td>
-              <td>${newPhone.value}</td>
-              <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
-              <td><a href="#" class="btn btn-info btn-sm update">update</a></td>`
+             <td>${newName.value}</td>
+             <td>${newAddress.value}</td>
+             <td>${newPhone.value}</td>
+             <td>
+                <a href="#" class="btn btn-danger btn-sm delete">X</a>
+             </td>
+             <td>
+                <a href="#" class="btn btn-info btn-sm update">update</a></td>`
         }
-
 
     static deleteContact(el) {
         if(el.classList.contains('delete')) {
@@ -92,7 +89,7 @@ class UI {
         }
     }
 
-    static showAlert(message, className) {
+static showAlert(message, className) {
         const div = document.createElement('div');
         div.className = `alert alert-${className}`;
         div.setAttribute('style', 'display:block; width:22%; margin: 10px; position: fixed')
@@ -113,7 +110,6 @@ class UI {
 // Store Class: Handles Storage
 class Store {
     static getContacts() {
-
         let contacts;
         if(localStorage.getItem('contacts') === null) {
             contacts = [];
@@ -128,7 +124,6 @@ class Store {
                 if (nameA > nameB) {
                     return 1;
                 }
-
                 // names must be equal
                 return 0;
             })
